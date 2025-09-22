@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinAI - Snowflake Cortex AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#1a73e8">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <h1><i class="fas fa-brain"></i> FinAI</h1>
+            <p>Powered by Snowflake Cortex AI</p>
+            <div class="connection-status" id="connectionStatus">
+                <i class="fas fa-circle"></i> Connecting...
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" data-tab="dashboard">
+                <i class="fas fa-chart-bar"></i>
+                <span>Dashboard</span>
+            </button>
+            <button class="nav-item" data-tab="fraud">
+                <i class="fas fa-shield-alt"></i>
+                <span>Fraud</span>
+            </button>
+            <button class="nav-item" data-tab="market">
+                <i class="fas fa-chart-line"></i>
+                <span>Market</span>
+            </button>
+            <button class="nav-item" data-tab="risk">
+                <i class="fas fa-balance-scale"></i>
+                <span>Risk</span>
+            </button>
+            <button class="nav-item" data-tab="chat">
+                <i class="fas fa-comments"></i>
+                <span>Chat</span>
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Tab -->
+            <div class="tab-content active" id="dashboard">
+                <div class="page-header">
+                    <h2><i class="fas fa-chart-bar"></i> Financial Dashboard</h2>
+                    <p>Real-time AI insights powered by Snowflake Cortex</p>
+                </div>
+                
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="metric-content">
+                            <h3>Fraud Detection</h3>
+                            <p>AI-powered transaction analysis</p>
+                            <div class="metric-value">98.5% Accuracy</div>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="metric-content">
+                            <h3>Market Sentiment</h3>
+                            <p>Real-time news analysis</p>
+                            <div class="metric-value">Bullish</div>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <div class="metric-content">
+                            <h3>Risk Assessment</h3>
+                            <p>Credit scoring & analysis</p>
+                            <div class="metric-value">Low Risk</div>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="metric-content">
+                            <h3>AI Assistant</h3>
+                            <p>Financial advisory chat</p>
+                            <div class="metric-value">Online</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <h3>Quick Actions</h3>
+                    <div class="action-buttons">
+                        <button class="action-btn" onclick="switchTab('fraud')">
+                            <i class="fas fa-shield-alt"></i>
+                            Analyze Transaction
+                        </button>
+                        <button class="action-btn" onclick="switchTab('market')">
+                            <i class="fas fa-chart-line"></i>
+                            Market Analysis
+                        </button>
+                        <button class="action-btn" onclick="switchTab('chat')">
+                            <i class="fas fa-comments"></i>
+                            Ask AI Assistant
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fraud Detection Tab -->
+            <div class="tab-content" id="fraud">
+                <div class="page-header">
+                    <h2><i class="fas fa-shield-alt"></i> Fraud Detection</h2>
+                    <p>AI-powered transaction analysis</p>
+                </div>
+                
+                <div class="form-container">
+                    <form id="fraudForm">
+                        <div class="form-group">
+                            <label for="amount">Transaction Amount ($)</label>
+                            <input type="number" id="amount" step="0.01" placeholder="1000.00" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="merchant">Merchant</label>
+                            <input type="text" id="merchant" placeholder="Amazon Store" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="location">Location</label>
+                            <input type="text" id="location" placeholder="New York, NY" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="cardType">Card Type</label>
+                                <select id="cardType">
+                                    <option value="Credit">Credit</option>
+                                    <option value="Debit">Debit</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="time">Time</label>
+                                <input type="time" id="time" value="12:00">
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-search"></i>
+                            Analyze for Fraud
+                        </button>
+                    </form>
+                    
+                    <div class="result-container" id="fraudResult" style="display: none;">
+                        <div class="result-header">
+                            <h3>Analysis Result</h3>
+                        </div>
+                        <div class="result-content" id="fraudContent"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Market Analysis Tab -->
+            <div class="tab-content" id="market">
+                <div class="page-header">
+                    <h2><i class="fas fa-chart-line"></i> Market Sentiment</h2>
+                    <p>AI-powered news analysis</p>
+                </div>
+                
+                <div class="form-container">
+                    <form id="marketForm">
+                        <div class="form-group">
+                            <label for="newsText">Financial News Text</label>
+                            <textarea id="newsText" placeholder="Enter financial news or market information..." rows="4" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-chart-line"></i>
+                            Analyze Sentiment
+                        </button>
+                    </form>
+                    
+                    <div class="preset-news">
+                        <h3>Sample News</h3>
+                        <div class="news-samples">
+                            <button class="sample-btn" onclick="loadSampleNews('bull')">
+                                📈 Tech Stocks Rally
+                            </button>
+                            <button class="sample-btn" onclick="loadSampleNews('bear')">
+                                📉 Market Concerns
+                            </button>
+                            <button class="sample-btn" onclick="loadSampleNews('neutral')">
+                                📊 Fed Rate Decision
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="result-container" id="marketResult" style="display: none;">
+                        <div class="result-header">
+                            <h3>Sentiment Analysis</h3>
+                        </div>
+                        <div class="result-content" id="marketContent"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Risk Assessment Tab -->
+            <div class="tab-content" id="risk">
+                <div class="page-header">
+                    <h2><i class="fas fa-balance-scale"></i> Credit Risk Assessment</h2>
+                    <p>AI-powered creditworthiness analysis</p>
+                </div>
+                
+                <div class="form-container">
+                    <form id="riskForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="customerId">Customer ID</label>
+                                <input type="text" id="customerId" placeholder="CUST001" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="creditScore">Credit Score</label>
+                                <input type="number" id="creditScore" min="300" max="850" placeholder="720">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="annualIncome">Annual Income ($)</label>
+                                <input type="number" id="annualIncome" placeholder="75000" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="employmentYears">Employment Years</label>
+                                <input type="number" id="employmentYears" min="0" placeholder="5">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="debtRatio">Debt-to-Income Ratio (%)</label>
+                            <input type="number" id="debtRatio" min="0" max="100" step="0.1" placeholder="25.0">
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-calculator"></i>
+                            Assess Credit Risk
+                        </button>
+                    </form>
+                    
+                    <div class="result-container" id="riskResult" style="display: none;">
+                        <div class="result-header">
+                            <h3>Risk Assessment</h3>
+                        </div>
+                        <div class="result-content" id="riskContent"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Chat Tab -->
+            <div class="tab-content" id="chat">
+                <div class="page-header">
+                    <h2><i class="fas fa-comments"></i> AI Financial Assistant</h2>
+                    <p>Ask questions about finance and investments</p>
+                </div>
+                
+                <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message bot-message">
+                            <div class="message-avatar">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="message-content">
+                                <p>Hello! I'm your AI financial assistant powered by Snowflake Cortex. How can I help you today?</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-input-container">
+                        <form id="chatForm">
+                            <div class="chat-input-wrapper">
+                                <input type="text" id="chatInput" placeholder="Ask me about finance, investments, or market trends..." required>
+                                <button type="submit">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="quick-questions">
+                        <h3>Quick Questions</h3>
+                        <div class="question-buttons">
+                            <button class="question-btn" onclick="askQuickQuestion('Should I invest in tech stocks?')">
+                                📈 Tech Stock Investment
+                            </button>
+                            <button class="question-btn" onclick="askQuickQuestion('How to improve my credit score?')">
+                                💳 Credit Score Tips
+                            </button>
+                            <button class="question-btn" onclick="askQuickQuestion('What are current market trends?')">
+                                📊 Market Trends
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
